@@ -7,16 +7,37 @@
     <title>goit-js-hw-12</title>
     
     <script type="module" crossorigin src="/goit-js-hw-12/commonHelpers.js"></script>
-    <link rel="modulepreload" crossorigin href="/goit-js-hw-12/assets/vendor-fb72d683.js">
+    <link rel="modulepreload" crossorigin href="/goit-js-hw-12/assets/vendor-5af972a3.js">
+    <link rel="stylesheet" href="/goit-js-hw-12/assets/vendor-1cd1f9d9.css">
     <link rel="stylesheet" href="/goit-js-hw-12/assets/index-fab40816.css">
   </head>
   <body>
+    <section class="search-section">
     
+      <div class="search-container">
+        <form class="search-form" name="searchImageForm">
+          <div class="input-group mb-3">
+            <input class="form-control" type="text" name="searchKeyword"
+              placeholder="Введіть дані для пошуку" required aria-label="Search images" aria-describedby="button-addon2">
+    
+            <button class="search-btn" type="submit" id="button-addon2">Пошук</button>
+    
+          </div>
+        </form>
+      </div>
+    </section>
+    
+    <section class="gallery-section">
+      <div class="gallery-container">
+        <div class="gallery-list row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <span class="loader is-hidden"></span>
 
-    <section>
-      <h1>Example page title</h1>
-      <!-- Path to images as from index.html file -->
-      <img src="/goit-js-hw-12/assets/javascript-8dac5379.svg" alt="" />
+          <ul class="gallery-list"></ul>
+
+          <button type="button" class="gallery-btn is-hidden">Load more</button>
+          
+        </div>
+      </div>
     </section>
 
     
