@@ -7,7 +7,7 @@ export const createGalleryItemMarkup = images => {
                        <a class="image-link js-image-link" href="${largeImageURL}">
                          <img src="${webformatURL}" alt="${tags}" title="${tags}">
                       </a>
-
+                      
                       <div class="image-details">
                          <ul class="image-descr">
                              <li class="image-descr-det">
