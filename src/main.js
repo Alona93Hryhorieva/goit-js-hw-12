@@ -44,7 +44,7 @@ async function onSearchFormSubmit(event) {
         
         loader.classList.remove('is-hidden');
 
-        const searchParamsObj = await fetchData(searchQuery, currentPage);
+        const searchParamsObj = await fetchData(searchQuery, page);
         console.log(searchParamsObj);
 
 
@@ -120,4 +120,4 @@ async function onSearchFormSubmit(event) {
 //         });
 // }
 
-// searchForm.addEventListener('submit', onSearchFormSubmit);
+searchForm.addEventListener('submit', onSearchFormSubmit);
