@@ -21,8 +21,6 @@ let searchQuery = '';
 let currentPage = 1;
 let totalPages;
 
-
-
 async function onSearchFormSubmit(event) {
     event.preventDefault();
     currentPage = 1;
@@ -92,175 +90,39 @@ searchForm.addEventListener('submit', onSearchFormSubmit);
 
 async function onClickLoadMoreBtn() {
  try {
-    currentPage++;
-    loader.classList.remove('is-hidden');
+      currentPage++;
+     loader.classList.remove('is-hidden');
 
-    const loadMoreData = await fetchData(searchQuery, currentPage);
-    const addedImgArray = loadMoreData.data.hits;
-    const editedGalleryMarkup = await createGalleryMarkup(addedImgArray);
-    loaderEl.classList.add('is-hidden');
-    galleryElements.innerHTML += editedGalleryMarkup;
-    const imageCard = document.querySelector('.image-card');
-    const rect = imageCard.getBoundingClientRect();
-    window.scrollBy({
+     const loadMoreData = await fetchData(searchQuery, currentPage);
+     const imageArray = loadMoreData.data.hits;
+     const newGalleryMarkup = await createGalleryItemMarkup(imageArray);
+    
+     loader.classList.add('is-hidden');
+     listGallery.innerHTML += newGalleryMarkup;
+     
+     const imageCard = document.querySelector('.image-card');
+     const rect = imageCard.getBoundingClientRect();
+     window.scrollBy({
       top: rect.height * 2,
       behavior: 'smooth',
-    });
+     });
 
-    galleryStyles.refresh();
+     listGallery.refresh();
 
-    if (currentPage >= totalPages) {
-      loadMoreBtn.classList.add('is-hidden');
-      return iziToast.info({
-        position: 'topRight',
-        message: "We're sorry, there are no more pictures to load",
-      });
-    }
-    // loadMoreBtn.classList.add('.is-hidden');
-  } catch (error) {
-    loaderEl.classList.add('is-hidden');
-    loadMoreBtn.classList.add('is-hidden');
-    return new Error('Oops, something went wrong 😞');
-  }
-}
-
-    
-}
-
-
-
-
-
-
-loadMoreBtn.classList.add('is-hidden');
-            loadMoreBtn.removeEventListener('click', clickLoadMoreBtn);
-
-            iziToast.info({
-                message: "We're sorry, but you've reached the end of search results.",
-                backgroundColor: 'blue',
-                theme: 'light',
-                position: 'topRight',
-                timeout: 2000,
-            });
-        } else {
-            loadMoreBtn.classList.remove('is-hidden');
-        }
-
-        listGallery.innerHTML = createCard(data.hits);
-        loadMoreBtn.addEventListener('click', clickLoadMoreBtn);
-
-        gallery.refresh();
-
-    } catch {
-        iziToast.error({
-            message: 'An error occurred. Please try again later.',
-            position: 'topRight',
-            timeout: 2000,
-            color: 'red',
-        });
+     if (currentPage >= totalPages) {
+         loadMoreBtn.classList.add('is-hidden');
+         return iziToast.info({
+              position: 'topRight',
+              message: "We're sorry, there are no more pictures to load",
+             timeout: 2000,
+             color: 'red',
+           });
+       }
+    } catch (error) {
+     loader.classList.add('is-hidden');
+     loadMoreBtn.classList.add('is-hidden');
+     return new Error('Sorry, an error occurred');
     }
 }
 
-
-
-
-searchForm.addEventListener('submit', onSearchFormSubmit);
-
-let gallery = new SimpleLightbox('.gallery-item__link', {
-    captionsData: 'alt',
-    captionDelay: 250
-});
-
-gallery.on('show.simplelightbox', function (event) {
-    event.preventDefault();
-});
-
-
-loaderEl.classList.add('is-hidden');
-    const galleryMarkup = await createGalleryMarkup(responseInfo.data.hits.length);
-    galleryElements.innerHTML = galleryMarkup;
-
-    if (totalPages > 1) {
-      loadMoreBtn.classList.remove('is-hidden');
-    }
-
-    event.target.reset();
-    galleryStyles.refresh();
-  } catch (error) {
-    loaderEl.classList.add('is-hidden');
-    loadMoreBtn.classList.add('is-hidden');
-    return new Error('Oops, something went wrong 😞');
-  
-
-
-        
-        
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-    
-
-  
-        
-        
-
-
-
-
-
-    
-
-//     fetchPhotosByQuery(searchQuery)
-//         .then(imagesData => {
-//             console.log('Received data:', imagesData); 
-
-//             if (imagesData.hits.length === 0 || !imagesData.hits) {
-//                 iziToast.show({
-//                     message: 'Sorry, there are no images for this query',
-//                     position: 'topRight',
-//                     timeout: 2000,
-//                     color: 'red',
-//                 });
-
-//                 listGallery.innerHTML = '';
-//                 return;
-//             }
-
-//             listGallery.innerHTML = createGalleryItemMarkup(imagesData.hits);
-
-//             if (lightbox) {
-//                 lightbox.destroy();
-//             }
-//             lightbox = new SimpleLightbox('.js-gallery a', {
-//                 captionDelay: 250,
-//             });
-//         })
-        
-//         .catch(error => {
-//             console.error('Error fetching photos:', error);
-//             iziToast.show({
-//                 message: 'An error occurred while fetching photos',
-//                 position: 'topRight',
-//                 timeout: 2000,
-//                 color: 'red',
-//             });
-//         })
-
-//         .finally(() => {
-//             event.target.reset();
-//             loader.classList.add('is-hidden');
-//         });
-// }
-
-searchForm.addEventListener('submit', onSearchFormSubmit);
+loadMoreBtn.addEventListener('click', onClickLoadMoreBtn);

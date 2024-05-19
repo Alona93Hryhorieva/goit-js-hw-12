@@ -18,23 +18,6 @@ export const fetchData = async (queryString, page) => {
 
   return searchParams;
 
-  // try {
-  //   const response = await fetch(API_URL);
-  //   const data = await response.json();
-
-  //   if (data.hits.length > 0) {
-  //     createGalleryItemMarkup(data.hits);
-  //     loadMoreBtn.classList.remove('is-hidden');
-  //     } else {
-  //      loadMoreBtn.classList.add('is-hidden');
-  //   }
-    
-  // } catch (error) {
-  //   console.error('Error fetching images:', error);
-    
-  // } finally {
-  //   loader.classList.add('is-hidden');
-  // }
 };
 
 
