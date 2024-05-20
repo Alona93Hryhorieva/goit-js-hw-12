@@ -63,7 +63,7 @@ async function onSearchFormSubmit(event) {
         }
 
         loader.classList.add('is-hidden');
-        const galleryMarkup = await createGalleryItemMarkup(imageArray);
+        const galleryMarkup = createGalleryItemMarkup(imageArray);
         listGallery.innerHTML = galleryMarkup;
 
         if (totalPages > 1) {
@@ -115,7 +115,7 @@ async function onClickLoadMoreBtn() {
               position: 'topRight',
               message: "We're sorry, there are no more pictures to load",
              timeout: 2000,
-             color: 'red',
+             color: 'blue',
            });
        }
     } catch (error) {

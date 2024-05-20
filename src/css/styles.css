@@ -147,6 +147,11 @@ button {
   background-color: #6c8cff;
 }
 
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
 /*------*/
 
 /*img*/
@@ -188,4 +193,6 @@ button {
 /*---Load more ----*/
 .gallery-btn{
   width: 125px;
+  display: block;
+  margin: 32px auto 44px auto;
 }
