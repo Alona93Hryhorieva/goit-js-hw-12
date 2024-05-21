@@ -111,6 +111,7 @@ async function onClickLoadMoreBtn() {
 
      if (currentPage >= totalPages) {
          loadMoreBtn.classList.add('is-hidden');
+         console.log('No more pages to load');
          iziToast.show({
              position: 'center',
              message: "We're sorry, there are no more pictures to load",
@@ -119,6 +120,7 @@ async function onClickLoadMoreBtn() {
          });
         }  
  } catch (error) {
+     console.log(error);
      loader.classList.add('is-hidden');
      loadMoreBtn.classList.add('is-hidden');
      return new Error('Sorry, an error occurred');
