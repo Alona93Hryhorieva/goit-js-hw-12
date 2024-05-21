@@ -107,20 +107,20 @@ async function onClickLoadMoreBtn() {
       behavior: 'smooth',
      });
 
-     listGallery.refresh();
+     galleryStyles.refresh();
 
      if (currentPage >= totalPages) {
          loadMoreBtn.classList.add('is-hidden');
-         console.log('No more pages to load');
+        //  console.log('No more pages to load');
          iziToast.show({
              position: 'center',
              message: "We're sorry, there are no more pictures to load",
              timeout: 2000,
-             color: 'blue',
+             color: 'yellow',
          });
         }  
  } catch (error) {
-     console.log(error);
+    //  console.log(error);
      loader.classList.add('is-hidden');
      loadMoreBtn.classList.add('is-hidden');
      return new Error('Sorry, an error occurred');
